@@ -32,14 +32,17 @@
     <script>
         const csrfToken = document.getElementsByName("_token")[0].getAttribute('value')
 
+
+
         async function postData() {
-            return fetch('{{route('password.make')}}', {
+            await fetch('{{route('password.make')}}', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
                     'X-CSRF-TOKEN': csrfToken,
                 },
-            });
+            }).then((response) => response.text())
+                .then((text) => console.log(text))
         }
     </script>
 </html>
